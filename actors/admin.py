@@ -4,4 +4,4 @@ from actors.models import Actor
 
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'age', 'birth_date', 'national')
+    list_display = ('id', 'name', 'age', 'birth_date', 'nationality')
