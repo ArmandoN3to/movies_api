@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from genres.views import genre_create_list_view,genre_detail_view  # Import the genre list view
+from genres.views import GenreListCreateView , GenreRetrieveUpdateDestroyView # Import the genre list view
 
-urlpatterns = [
+urlpatterns = [ 
     path('admin/', admin.site.urls),
-    path('genres/',genre_create_list_view, name='genre'),  # URL for the genre list view
-    path('genres/<int:pk>/',genre_detail_view ,name='genre_detail')
+    path('genres/',GenreListCreateView.as_view(), name='genre'),  # URL for the genre list view
+    path('genres/<int:pk>/',GenreRetrieveUpdateDestroyView.as_view() ,name='genre_detail')
 
 ]
