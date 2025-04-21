@@ -15,24 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from genres.views import GenreListCreateView , GenreRetrieveUpdateDestroyView 
-from actors.views import ActorsListCreateView , ActorsRetrieveUpdateDestroyView
-from movies.views import MoviesCreateListView , MoviesRetrieveUpdateDestroyView
-from reviews.views import ReviewCreateListView , ReviewRetrieveUpdateDestroyView
+from django.urls import path, include
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
 
-    path('genres/',GenreListCreateView.as_view(), name='genre_create_list'),  # URL for the genre list view
-    path('genres/<int:pk>/',GenreRetrieveUpdateDestroyView.as_view() ,name='genre_detail'),
+    path('api/v1/',include('genres.urls')),
 
-    path('actors/',ActorsListCreateView.as_view(),name='actors_create_list'),
-    path('actors/<int:pk>/',ActorsRetrieveUpdateDestroyView.as_view() ,name='actor_detail'),
-    
-    path('movies/',MoviesCreateListView.as_view(),name='movies_create_list'),
-    path('movies/int:pk>/',MoviesRetrieveUpdateDestroyView.as_view(),name='movie_detail'),
+    path('api/v1/',include('actors.urls')),
 
-    path('reviews/',ReviewCreateListView.as_view(),name='review_create_list'),
-    path('reviews/<int:pk>/',ReviewRetrieveUpdateDestroyView.as_view(),name='review_detail'),
+    path('api/v1/',include('movies.urls')),
+
+    path('api/v1/',include('reviews.urls')),
 ]
